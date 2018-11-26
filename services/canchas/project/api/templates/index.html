@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>Flask on Docker</title>
+    <!-- meta -->
+    <meta name="description" content="">
+    <meta name="author" content="">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <!-- styles -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+
+         {% block css %}{% endblock %}
+  </head>
+  <body>
+
+
+  <div class="col-lg-12 grid-margin stretch-card">
+              <div class="card col-lg-12 ">
+
+                <div class="card-body">
+                  <h4 class="card-title"></h4>
+                  <p class="card-description">
+                    <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal">
+  Agregar cancha
+</button>
+                  </p>
+                  <div class="table-responsive">
+                    <table class="table table-bordered">
+                      <thead>
+                        <tr>
+                            <th>#</th>
+                            <th>Cancha</th>
+                            <th>Tipo</th>
+                            <th>Precio/Dia</th>
+                            <th>Precio/Noche</th>
+                        </tr>
+                      </thead>
+                      <tbody>
+                      {% for cancha in canchas %}
+                                    <tr>
+                                      <td>{{ cancha.id }}</td>
+                                      <td>{{ cancha.canchan }}</td>
+                                      <td>{{ cancha.tipo }}</td>
+                                      <td>S/. {{ cancha.preciod }}</td>
+                                      <td>S/. {{ cancha.precion }}</td>
+
+                                    </tr>
+                                    {% endfor %}
+                      </tbody>
+                    </table>
+                  </div>
+                </div>
+              </div>
+            </div>
+  <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+          <div class="modal-dialog" role="document">
+            <div class="modal-content">
+
+              <div class="modal-body">
+                  <div class="card"></div>
+                  <div class="card-body">
+                      <h4 class="card-title">Canchas</h4>
+                      <p class="card-description">
+                        Ingresar nuevo registro de cancha
+                      </p>
+                      <form action="/" method="POST" class="forms-sample">
+                        <div class="form-group">
+                          <label >Cancha</label>
+                          <input type="text" class="form-control" name="canchan" placeholder="Cancha Tennis">
+                        </div>
+                        <div class="form-group">
+                          <label >Tipo</label>
+                          <input type="text" class="form-control" name="tipo" placeholder="Ingrese nro jugadores">
+                        </div>
+                        <div class="form-group">
+                          <label>Precio Dia</label>
+                          <input type="number" class="form-control" name="preciod" placeholder="S./">
+                        </div>
+                        <div class="form-group">
+                          <label>Precio Noche</label>
+                          <input type="number" class="form-control" name="precion" placeholder="S./">
+                        </div>
+                        <button type="submit" class="btn btn-success mr-2">Guardar</button>
+                        <button type="button" data-dismiss="modal" aria-label="Close" class="btn btn-danger btn-fw">Cancelar</button>
+                      </form>
+                    </div>
+                    </div>
+            </div>
+          </div>
+  </div>
+
+
+
+  </body>
+
+<script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+</html>

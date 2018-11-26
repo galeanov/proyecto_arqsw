@@ -1,0 +1,38 @@
+
+  version: '3'
+
+  services:
+
+    canchas:
+      build:
+        context: ./services/canchas
+        dockerfile: Dockerfile-prod
+      expose:
+        - 5000
+      environment:
+        - FLASK_ENV=production
+        - APP_SETTINGS=project.config.ProductionConfig
+        - DATABASE_URL=postgres://postgres:postgres@canchas-db:5432/canchas_prod
+        - DATABASE_TEST_URL=postgres://postgres:postgres@canchas-db:5432/canchas_test
+      depends_on:  # <-- nuevo
+        - canchas-db
+
+    canchas-db:  # <-- nuevo
+      build:
+        context: ./services/canchas/project/db
+        dockerfile: Dockerfile
+      ports:
+        - 5435:5432
+      environment:
+        - POSTGRES_USER=postgres
+        - POSTGRES_PASSWORD=postgres
+
+    nginx:
+      build:
+        context: ./services/nginx
+        dockerfile: Dockerfile-prod
+      restart: always
+      ports:
+        - 80:80
+      depends_on:
+      - canchas
